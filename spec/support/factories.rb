@@ -12,6 +12,16 @@ FactoryGirl.define do
         create_list(:job, evaluator.jobs_count, company: company)
       end
     end
+
+    factory :company_with_a_job do
+      transient do
+        jobs_count 1
+      end
+
+      after(:create) do |company, evaluator|
+        create_list(:job, evaluator.jobs_count, company: company)
+      end
+    end
   end
 
   sequence :name do |n|
